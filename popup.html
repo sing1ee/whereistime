@@ -12,12 +12,44 @@
     #chart-container {
       width: 100%;
       height: 300px;
+      margin-bottom: 20px;
+    }
+    #time-list {
+      margin: 20px 0;
+      padding: 0;
+      list-style: none;
+    }
+    #time-list li {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    #time-list li:last-child {
+      border-bottom: none;
+    }
+    .actions {
+      margin-top: 20px;
+      text-align: right;
+    }
+    .reset-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .reset-btn:hover {
+      background-color: #c82333;
     }
   </style>
 </head>
 <body>
   <h2>Browsing Time Statistics</h2>
   <canvas id="chart-container"></canvas>
+  <ul id="time-list"></ul>
+  <div class="actions">
+    <button id="reset-btn" class="reset-btn">Reset Statistics</button>
+  </div>
   <script src="node_modules/chart.js/dist/chart.umd.js"></script>
   <script src="popup.js"></script>
 </body>
