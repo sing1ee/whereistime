@@ -49,13 +49,28 @@ async function displayStats() {
   const sortedEntries = Object.entries(timeStats)
     .sort(([, a], [, b]) => b - a);
 
-  const domains = sortedEntries.map(([domain]) => domain);
-  const durations = sortedEntries.map(([, duration]) => duration);
-  const totalTime = durations.reduce((a, b) => a + b, 0);
+  // 分离前10个网站和其他网站
+  const top10Entries = sortedEntries.slice(0, 10);
+  const otherEntries = sortedEntries.slice(10);
 
-  // 更新饼图
-  const percentages = durations.map(d => ((d / totalTime) * 100).toFixed(1));
-  const labels = domains.map((domain, i) => 
+  // 计算"其他"类别的总时间
+  const otherTotalTime = otherEntries.reduce((sum, [, duration]) => sum + duration, 0);
+
+  // 准备最终的数据数组
+  let finalDomains = top10Entries.map(([domain]) => domain);
+  let finalDurations = top10Entries.map(([, duration]) => duration);
+
+  // 如果有其他网站，添加"其他"类别
+  if (otherTotalTime > 0) {
+    finalDomains.push(chrome.i18n.getMessage("others") || "Others");
+    finalDurations.push(otherTotalTime);
+  }
+
+  const totalTime = finalDurations.reduce((a, b) => a + b, 0);
+
+  // 计算百分比并创建标签
+  const percentages = finalDurations.map(d => ((d / totalTime) * 100).toFixed(1));
+  const labels = finalDomains.map((domain, i) => 
     `${domain} (${percentages[i]}%)`
   );
 
@@ -65,6 +80,21 @@ async function displayStats() {
   if (myChart) {
     myChart.destroy();
   }
+
+  // 创建颜色数组
+  const colors = [
+    '#FF6384', // 红色
+    '#36A2EB', // 蓝色
+    '#FFCE56', // 黄色
+    '#4BC0C0', // 青色
+    '#9966FF', // 紫色
+    '#FF9F40', // 橙色
+    '#7FD2FF', // 浅蓝
+    '#FFB6C1', // 浅粉
+    '#98FB98', // 浅绿
+    '#DDA0DD', // 浅紫
+    '#808080'  // 灰色（用于"其他"类别）
+  ];
   
   // 创建新的图表实例并保存到全局变量
   myChart = new Chart(ctx, {
@@ -72,15 +102,8 @@ async function displayStats() {
     data: {
       labels: labels,
       datasets: [{
-        data: durations,
-        backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#4BC0C0',
-          '#9966FF',
-          '#FF9F40'
-        ]
+        data: finalDurations,
+        backgroundColor: colors
       }]
     },
     options: {
@@ -88,10 +111,29 @@ async function displayStats() {
       plugins: {
         legend: {
           position: 'bottom',
+          labels: {
+            // 限制标签文本长度
+            formatter: function(value, context) {
+              let label = context.label || '';
+              if (label.length > 30) {
+                label = label.substring(0, 27) + '...';
+              }
+              return label;
+            }
+          }
         },
         title: {
           display: true,
           text: chrome.i18n.getMessage("chartTitle")
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const domain = finalDomains[context.dataIndex];
+              const duration = finalDurations[context.dataIndex];
+              return `${domain}: ${formatTime(duration)}`;
+            }
+          }
         }
       }
     }
@@ -99,13 +141,21 @@ async function displayStats() {
 
   // 更新时间列表
   const timeList = document.getElementById('time-list');
-  timeList.innerHTML = sortedEntries
-    .map(([domain, duration]) => `
-      <li>
-        <strong>${domain}</strong>: ${formatTime(duration)}
-      </li>
-    `)
-    .join('');
+  timeList.innerHTML = '';
+  
+  // 只显示前10个网站的详细列表
+  top10Entries.forEach(([domain, duration]) => {
+    const li = document.createElement('li');
+    li.textContent = `${domain}: ${formatTime(duration)}`;
+    timeList.appendChild(li);
+  });
+
+  // 如果有其他网站，添加一个"其他"条目
+  if (otherTotalTime > 0) {
+    const li = document.createElement('li');
+    li.textContent = `${chrome.i18n.getMessage("others") || "Others"}: ${formatTime(otherTotalTime)}`;
+    timeList.appendChild(li);
+  }
 }
 
 // 初始化国际化文本
