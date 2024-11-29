@@ -25,11 +25,22 @@ function downloadChart(format) {
   const canvas = document.getElementById('chart-container');
   const link = document.createElement('a');
   
+  // 创建一个临时画布来调整大小
+  const tempCanvas = document.createElement('canvas');
+  tempCanvas.width = 640;
+  tempCanvas.height = 400;
+  
+  // 获取临时画布的上下文
+  const tempCtx = tempCanvas.getContext('2d');
+  
+  // 在临时画布上绘制调整大小后的图像
+  tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 640, 400);
+  
   // 设置正确的MIME类型
   const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
   
-  // 获取图像数据
-  const imageData = canvas.toDataURL(mimeType);
+  // 从临时画布获取调整大小后的图像数据
+  const imageData = tempCanvas.toDataURL(mimeType, 1.0);
   
   // 设置下载链接
   link.download = `${chrome.i18n.getMessage("downloadFileName")}.${format}`;
