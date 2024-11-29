@@ -26,5 +26,25 @@
   "browsingStats": {
     "message": "浏览时间统计",
     "description": "统计标题"
+  },
+  "hours": {
+    "message": "小时",
+    "description": "小时单位"
+  },
+  "minutes": {
+    "message": "分钟",
+    "description": "分钟单位"
+  },
+  "seconds": {
+    "message": "秒",
+    "description": "秒单位"
+  },
+  "chartTitle": {
+    "message": "网站访问时间分布",
+    "description": "图表标题"
+  },
+  "downloadFileName": {
+    "message": "浏览统计",
+    "description": "下载文件名"
   }
 }

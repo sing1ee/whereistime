@@ -26,5 +26,25 @@
   "browsingStats": {
     "message": "Browsing Time Statistics",
     "description": "Statistics title"
+  },
+  "hours": {
+    "message": "h",
+    "description": "Hours unit"
+  },
+  "minutes": {
+    "message": "m",
+    "description": "Minutes unit"
+  },
+  "seconds": {
+    "message": "s",
+    "description": "Seconds unit"
+  },
+  "chartTitle": {
+    "message": "Website Time Distribution",
+    "description": "Chart title"
+  },
+  "downloadFileName": {
+    "message": "browsing-stats",
+    "description": "Download file name"
   }
 }

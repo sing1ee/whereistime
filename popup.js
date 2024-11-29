@@ -5,15 +5,15 @@ function formatTime(milliseconds) {
   const remainingSeconds = seconds % 60;
 
   const parts = [];
-  if (hours > 0) parts.push(`${hours}小时`);
-  if (minutes > 0) parts.push(`${minutes}分钟`);
-  if (remainingSeconds > 0 || parts.length === 0) parts.push(`${remainingSeconds}秒`);
+  if (hours > 0) parts.push(`${hours}${chrome.i18n.getMessage("hours")}`);
+  if (minutes > 0) parts.push(`${minutes}${chrome.i18n.getMessage("minutes")}`);
+  if (remainingSeconds > 0 || parts.length === 0) parts.push(`${remainingSeconds}${chrome.i18n.getMessage("seconds")}`);
 
   return parts.join(' ');
 }
 
 async function resetStats() {
-  if (confirm('确定要重置所有统计数据吗？此操作不可撤销。')) {
+  if (confirm(chrome.i18n.getMessage("resetConfirm"))) {
     await chrome.storage.local.set({ timeStats: {} });
     displayStats();
   }
@@ -32,7 +32,7 @@ function downloadChart(format) {
   const imageData = canvas.toDataURL(mimeType);
   
   // 设置下载链接
-  link.download = `browsing-stats.${format}`;
+  link.download = `${chrome.i18n.getMessage("downloadFileName")}.${format}`;
   link.href = imageData;
   
   // 触发下载
@@ -91,7 +91,7 @@ async function displayStats() {
         },
         title: {
           display: true,
-          text: 'Website Time Distribution'
+          text: chrome.i18n.getMessage("chartTitle")
         }
       }
     }

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>URL Time Tracker</title>
+  <title>__MSG_extName__</title>
   <style>
     body {
       width: 400px;
@@ -30,41 +30,30 @@
       margin-top: 20px;
       text-align: right;
     }
-    .reset-btn {
-      background-color: #dc3545;
-      color: white;
+    .btn {
+      padding: 8px 12px;
+      margin-left: 8px;
       border: none;
-      padding: 8px 16px;
       border-radius: 4px;
+      background-color: #4CAF50;
+      color: white;
       cursor: pointer;
     }
-    .reset-btn:hover {
-      background-color: #c82333;
-    }
-    .download-btn {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-    .download-btn:hover {
-      background-color: #218838;
+    .btn:hover {
+      background-color: #45a049;
     }
   </style>
+  <script src="lib/chart.min.js"></script>
+  <script src="popup.js"></script>
 </head>
 <body>
   <h2>Browsing Time Statistics</h2>
   <canvas id="chart-container"></canvas>
   <ul id="time-list"></ul>
   <div class="actions">
-    <button id="download-png" class="download-btn">Save as PNG</button>
-    <button id="download-jpeg" class="download-btn">Save as JPEG</button>
-    <button id="reset-btn" class="reset-btn">Reset Statistics</button>
+    <button id="download-png" class="btn">__MSG_saveAsPNG__</button>
+    <button id="download-jpeg" class="btn">__MSG_saveAsJPEG__</button>
+    <button id="reset-btn" class="btn">__MSG_resetButton__</button>
   </div>
-  <script src="lib/chart.min.js"></script>
-  <script src="popup.js"></script>
 </body>
 </html>

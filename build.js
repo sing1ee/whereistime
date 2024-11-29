@@ -53,6 +53,33 @@ chartJsContent = chartJsContent.replace(/\s+/g, ' ');
 fs.writeFileSync(chartJsTarget, chartJsContent);
 console.log('已复制并压缩: Chart.js');
 
+// 复制 _locales 目录
+const localesDir = path.join(__dirname, '_locales');
+if (fs.existsSync(localesDir)) {
+    const targetLocalesDir = path.join(distDir, '_locales');
+    fs.mkdirSync(targetLocalesDir, { recursive: true });
+    
+    // 复制所有语言目录
+    const languages = fs.readdirSync(localesDir);
+    languages.forEach(lang => {
+        const sourceLangDir = path.join(localesDir, lang);
+        const targetLangDir = path.join(targetLocalesDir, lang);
+        
+        if (fs.statSync(sourceLangDir).isDirectory()) {
+            fs.mkdirSync(targetLangDir, { recursive: true });
+            
+            // 复制语言目录中的所有文件
+            const langFiles = fs.readdirSync(sourceLangDir);
+            langFiles.forEach(file => {
+                const sourceFile = path.join(sourceLangDir, file);
+                const targetFile = path.join(targetLangDir, file);
+                fs.copyFileSync(sourceFile, targetFile);
+                console.log(`已复制: _locales/${lang}/${file}`);
+            });
+        }
+    });
+}
+
 // 如果有public目录，复制整个目录
 const publicDir = path.join(__dirname, 'public');
 if (fs.existsSync(publicDir)) {
