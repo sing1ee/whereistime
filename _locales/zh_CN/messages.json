@@ -19,14 +19,6 @@
     "message": "保存为JPEG",
     "description": "保存为JPEG按钮文本"
   },
-  "resetStats": {
-    "message": "重置统计",
-    "description": "重置统计按钮文本"
-  },
-  "browsingStats": {
-    "message": "浏览时间统计",
-    "description": "统计标题"
-  },
   "hours": {
     "message": "小时",
     "description": "小时单位"
@@ -46,5 +38,13 @@
   "downloadFileName": {
     "message": "浏览统计",
     "description": "下载文件名"
+  },
+  "browsingStats": {
+    "message": "浏览时间统计",
+    "description": "统计标题"
+  },
+  "resetButton": {
+    "message": "重置统计",
+    "description": "重置按钮文本"
   }
 }

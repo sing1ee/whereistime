@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>__MSG_extName__</title>
+  <title data-i18n="extName"></title>
   <style>
     body {
       width: 400px;
@@ -47,13 +47,13 @@
   <script src="popup.js"></script>
 </head>
 <body>
-  <h2>Browsing Time Statistics</h2>
+  <h2 data-i18n="browsingStats"></h2>
   <canvas id="chart-container"></canvas>
   <ul id="time-list"></ul>
   <div class="actions">
-    <button id="download-png" class="btn">__MSG_saveAsPNG__</button>
-    <button id="download-jpeg" class="btn">__MSG_saveAsJPEG__</button>
-    <button id="reset-btn" class="btn">__MSG_resetButton__</button>
+    <button id="download-png" class="btn" data-i18n="saveAsPNG"></button>
+    <button id="download-jpeg" class="btn" data-i18n="saveAsJPEG"></button>
+    <button id="reset-btn" class="btn" data-i18n="resetButton"></button>
   </div>
 </body>
 </html>

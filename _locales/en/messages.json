@@ -19,14 +19,6 @@
     "message": "Save as JPEG",
     "description": "Save as JPEG button text"
   },
-  "resetStats": {
-    "message": "Reset Statistics",
-    "description": "Reset statistics button text"
-  },
-  "browsingStats": {
-    "message": "Browsing Time Statistics",
-    "description": "Statistics title"
-  },
   "hours": {
     "message": "h",
     "description": "Hours unit"
@@ -46,5 +38,13 @@
   "downloadFileName": {
     "message": "browsing-stats",
     "description": "Download file name"
+  },
+  "browsingStats": {
+    "message": "Browsing Time Statistics",
+    "description": "Statistics title"
+  },
+  "resetButton": {
+    "message": "Reset Statistics",
+    "description": "Reset button text"
   }
 }

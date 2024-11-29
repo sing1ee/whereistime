@@ -108,7 +108,28 @@ async function displayStats() {
     .join('');
 }
 
+// 初始化国际化文本
+function initializeI18n() {
+  // 替换标题
+  document.title = chrome.i18n.getMessage("extName");
+  
+  // 替换按钮文本
+  document.getElementById('download-png').textContent = chrome.i18n.getMessage("saveAsPNG");
+  document.getElementById('download-jpeg').textContent = chrome.i18n.getMessage("saveAsJPEG");
+  document.getElementById('reset-btn').textContent = chrome.i18n.getMessage("resetButton");
+  
+  // 替换其他文本元素
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(element => {
+    const messageName = element.getAttribute('data-i18n');
+    element.textContent = chrome.i18n.getMessage(messageName);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // 初始化国际化文本
+  initializeI18n();
+  
   displayStats();
   document.getElementById('reset-btn').addEventListener('click', resetStats);
   document.getElementById('download-png').addEventListener('click', () => downloadChart('png'));
