@@ -19,6 +19,28 @@ async function resetStats() {
   }
 }
 
+let myChart; // 声明全局变量存储图表实例
+
+function downloadChart(format) {
+  const canvas = document.getElementById('chart-container');
+  const link = document.createElement('a');
+  
+  // 设置正确的MIME类型
+  const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
+  
+  // 获取图像数据
+  const imageData = canvas.toDataURL(mimeType);
+  
+  // 设置下载链接
+  link.download = `browsing-stats.${format}`;
+  link.href = imageData;
+  
+  // 触发下载
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 async function displayStats() {
   const data = await chrome.storage.local.get('timeStats');
   const timeStats = data.timeStats || {};
@@ -38,7 +60,14 @@ async function displayStats() {
   );
 
   const ctx = document.getElementById('chart-container').getContext('2d');
-  new Chart(ctx, {
+  
+  // 如果已存在图表实例，先销毁它
+  if (myChart) {
+    myChart.destroy();
+  }
+  
+  // 创建新的图表实例并保存到全局变量
+  myChart = new Chart(ctx, {
     type: 'pie',
     data: {
       labels: labels,
@@ -82,4 +111,6 @@ async function displayStats() {
 document.addEventListener('DOMContentLoaded', () => {
   displayStats();
   document.getElementById('reset-btn').addEventListener('click', resetStats);
+  document.getElementById('download-png').addEventListener('click', () => downloadChart('png'));
+  document.getElementById('download-jpeg').addEventListener('click', () => downloadChart('jpeg'));
 });
