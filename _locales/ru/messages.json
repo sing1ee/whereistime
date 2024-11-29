@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "URL Трекер Времени",
+    "message": "URL Time Tracker",
     "description": "Название расширения"
   },
   "extDesc": {
-    "message": "Отслеживание времени, проведенного на различных веб-сайтах",
+    "message": "Отслеживание времени, проведенного на разных сайтах",
     "description": "Описание расширения"
   },
   "resetConfirm": {
@@ -13,26 +13,26 @@
   },
   "saveAsPNG": {
     "message": "Сохранить как PNG",
-    "description": "Текст кнопки Сохранить как PNG"
+    "description": "Текст кнопки сохранения в PNG"
   },
   "saveAsJPEG": {
     "message": "Сохранить как JPEG",
-    "description": "Текст кнопки Сохранить как JPEG"
+    "description": "Текст кнопки сохранения в JPEG"
   },
   "hours": {
     "message": "ч",
-    "description": "Единица часов"
+    "description": "Единица измерения часов"
   },
   "minutes": {
     "message": "м",
-    "description": "Единица минут"
+    "description": "Единица измерения минут"
   },
   "seconds": {
     "message": "с",
-    "description": "Единица секунд"
+    "description": "Единица измерения секунд"
   },
   "chartTitle": {
-    "message": "Распределение Времени по Сайтам",
+    "message": "Распределение времени по сайтам",
     "description": "Заголовок графика"
   },
   "downloadFileName": {
@@ -40,11 +40,19 @@
     "description": "Имя файла для скачивания"
   },
   "browsingStats": {
-    "message": "Статистика Просмотров",
+    "message": "Статистика просмотров",
     "description": "Заголовок статистики"
   },
   "resetButton": {
-    "message": "Сбросить Статистику",
+    "message": "Сбросить статистику",
     "description": "Текст кнопки сброса"
+  },
+  "privacyPolicy": {
+    "message": "Политика конфиденциальности",
+    "description": "Privacy policy link text"
+  },
+  "projectHome": {
+    "message": "Страница проекта",
+    "description": "Project homepage link text"
   }
 }

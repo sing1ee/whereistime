@@ -46,5 +46,13 @@
   "resetButton": {
     "message": "Restablecer Estadísticas",
     "description": "Texto del botón de restablecimiento"
+  },
+  "privacyPolicy": {
+    "message": "Política de Privacidad",
+    "description": "Privacy policy link text"
+  },
+  "projectHome": {
+    "message": "Página del Proyecto",
+    "description": "Project homepage link text"
   }
 }

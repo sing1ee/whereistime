@@ -46,5 +46,13 @@
   "resetButton": {
     "message": "重置统计",
     "description": "重置按钮文本"
+  },
+  "privacyPolicy": {
+    "message": "隐私政策",
+    "description": "Privacy policy link text"
+  },
+  "projectHome": {
+    "message": "项目主页",
+    "description": "Project homepage link text"
   }
 }

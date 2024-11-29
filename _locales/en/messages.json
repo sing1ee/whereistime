@@ -46,5 +46,13 @@
   "resetButton": {
     "message": "Reset Statistics",
     "description": "Reset button text"
+  },
+  "privacyPolicy": {
+    "message": "Privacy Policy",
+    "description": "Privacy policy link text"
+  },
+  "projectHome": {
+    "message": "Project Home",
+    "description": "Project homepage link text"
   }
 }

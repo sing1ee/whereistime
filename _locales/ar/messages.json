@@ -46,5 +46,13 @@
   "resetButton": {
     "message": "إعادة تعيين الإحصائيات",
     "description": "نص زر إعادة التعيين"
+  },
+  "privacyPolicy": {
+    "message": "سياسة الخصوصية",
+    "description": "Privacy policy link text"
+  },
+  "projectHome": {
+    "message": "الصفحة الرئيسية",
+    "description": "Project homepage link text"
   }
 }

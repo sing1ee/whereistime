@@ -46,5 +46,13 @@
   "resetButton": {
     "message": "Réinitialiser les Statistiques",
     "description": "Texte du bouton de réinitialisation"
+  },
+  "privacyPolicy": {
+    "message": "Politique de Confidentialité",
+    "description": "Privacy policy link text"
+  },
+  "projectHome": {
+    "message": "Page du Projet",
+    "description": "Project homepage link text"
   }
 }
