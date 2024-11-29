@@ -2,7 +2,11 @@
 let tabStates = {};
 let activeTabId = null;
 
+// 环境变量控制
+const IS_DEV = false;
+
 function logDebug(message, data = null) {
+    if (!IS_DEV) return; // 在生产环境中不输出日志
     const timestamp = new Date().toISOString();
     const logMessage = `[${timestamp}] ${message}`;
     console.log(logMessage, data ? data : '');
@@ -22,12 +26,16 @@ function saveTimeToStorage(url, duration) {
             }
             timeStats[domain] += duration;
             
-            logDebug(`保存时间统计 - 域名: ${domain}, 时长: ${duration}ms, 总计: ${timeStats[domain]}ms`);
+            if (IS_DEV) {
+                logDebug(`保存时间统计 - 域名: ${domain}, 时长: ${duration}ms, 总计: ${timeStats[domain]}ms`);
+            }
             
             chrome.storage.local.set({ timeStats });
         });
     } catch (error) {
-        console.error('保存时间时出错:', error);
+        if (IS_DEV) {
+            console.error('保存时间时出错:', error);
+        }
     }
 }
 
@@ -36,11 +44,15 @@ function recordEndTime(tabId) {
     const state = tabStates[tabId];
     if (state && tabId === activeTabId) {  // 只记录活跃标签页的时间
         const duration = Date.now() - state.startTime;
-        logDebug(`记录结束时间 - TabID: ${tabId}, URL: ${state.url}, 持续时间: ${duration}ms`);
+        if (IS_DEV) {
+            logDebug(`记录结束时间 - TabID: ${tabId}, URL: ${state.url}, 持续时间: ${duration}ms`);
+        }
         saveTimeToStorage(state.url, duration);
         delete tabStates[tabId];
     } else {
-        logDebug(`跳过记录结束时间 - TabID: ${tabId}, 活跃TabID: ${activeTabId}`, state);
+        if (IS_DEV) {
+            logDebug(`跳过记录结束时间 - TabID: ${tabId}, 活跃TabID: ${activeTabId}`, state);
+        }
     }
 }
 
@@ -52,7 +64,9 @@ function recordStartTime(tabId, url) {
         url: url,
         startTime: Date.now()
     };
-    logDebug(`记录开始时间 - TabID: ${tabId}, URL: ${url}`);
+    if (IS_DEV) {
+        logDebug(`记录开始时间 - TabID: ${tabId}, URL: ${url}`);
+    }
 }
 
 // 初始化：获取当前活跃标签页
@@ -61,18 +75,24 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         activeTabId = tab.id;
         recordStartTime(tab.id, tab.url);
-        logDebug(`初始化 - 设置活跃标签页 - TabID: ${tab.id}, URL: ${tab.url}`);
+        if (IS_DEV) {
+            logDebug(`初始化 - 设置活跃标签页 - TabID: ${tab.id}, URL: ${tab.url}`);
+        }
     }
 });
 
 // 监听标签页激活
 chrome.tabs.onActivated.addListener((activeInfo) => {
     const tabId = activeInfo.tabId;
-    logDebug(`标签页激活 - 新TabID: ${tabId}, 旧TabID: ${activeTabId}`);
+    if (IS_DEV) {
+        logDebug(`标签页激活 - 新TabID: ${tabId}, 旧TabID: ${activeTabId}`);
+    }
     
     // 记录之前活跃标签页的结束时间
     if (activeTabId !== null) {
-        logDebug(`处理前一个标签页 - TabID: ${activeTabId}`);
+        if (IS_DEV) {
+            logDebug(`处理前一个标签页 - TabID: ${activeTabId}`);
+        }
         recordEndTime(activeTabId);
     }
     
@@ -82,7 +102,9 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
     // 获取新激活的标签页信息
     chrome.tabs.get(tabId, (tab) => {
         if (tab.url) {
-            logDebug(`新标签页信息 - URL: ${tab.url}`);
+            if (IS_DEV) {
+                logDebug(`新标签页信息 - URL: ${tab.url}`);
+            }
             recordStartTime(tabId, tab.url);
         }
     });
@@ -92,35 +114,47 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // 只处理URL变化且是活跃标签页的情况
     if (changeInfo.url && tabId === activeTabId) {
-        logDebug(`URL更新 - TabID: ${tabId}, 新URL: ${changeInfo.url}`);
+        if (IS_DEV) {
+            logDebug(`URL更新 - TabID: ${tabId}, 新URL: ${changeInfo.url}`);
+        }
         
         // 记录旧URL的结束时间
         recordEndTime(tabId);
         // 记录新URL的开始时间
         recordStartTime(tabId, changeInfo.url);
     } else if (changeInfo.url) {
-        logDebug(`忽略非活跃标签页的URL更新 - TabID: ${tabId}, URL: ${changeInfo.url}`);
+        if (IS_DEV) {
+            logDebug(`忽略非活跃标签页的URL更新 - TabID: ${tabId}, URL: ${changeInfo.url}`);
+        }
     }
 });
 
 // 监听标签页关闭
 chrome.tabs.onRemoved.addListener((tabId) => {
-    logDebug(`标签页关闭 - TabID: ${tabId}, 活跃TabID: ${activeTabId}`);
+    if (IS_DEV) {
+        logDebug(`标签页关闭 - TabID: ${tabId}, 活跃TabID: ${activeTabId}`);
+    }
     if (tabId === activeTabId) {
         recordEndTime(tabId);
         activeTabId = null;
-        logDebug('清除活跃标签页ID');
+        if (IS_DEV) {
+            logDebug('清除活跃标签页ID');
+        }
     }
 });
 
 // 监听窗口焦点变化
 chrome.windows.onFocusChanged.addListener((windowId) => {
-    logDebug(`窗口焦点变化 - WindowID: ${windowId}, 活跃TabID: ${activeTabId}`);
+    if (IS_DEV) {
+        logDebug(`窗口焦点变化 - WindowID: ${windowId}, 活跃TabID: ${activeTabId}`);
+    }
     
     if (windowId === chrome.windows.WINDOW_ID_NONE) {
         // 当窗口失去焦点时，记录活跃标签页的结束时间
         if (activeTabId !== null) {
-            logDebug('窗口失去焦点，记录活跃标签页时间');
+            if (IS_DEV) {
+                logDebug('窗口失去焦点，记录活跃标签页时间');
+            }
             recordEndTime(activeTabId);
             activeTabId = null;
         }
@@ -129,7 +163,9 @@ chrome.windows.onFocusChanged.addListener((windowId) => {
         chrome.tabs.query({ active: true, windowId: windowId }, (tabs) => {
             if (tabs.length > 0 && tabs[0].url) {
                 activeTabId = tabs[0].id;
-                logDebug(`窗口获得焦点，设置新活跃标签页 - TabID: ${activeTabId}, URL: ${tabs[0].url}`);
+                if (IS_DEV) {
+                    logDebug(`窗口获得焦点，设置新活跃标签页 - TabID: ${activeTabId}, URL: ${tabs[0].url}`);
+                }
                 recordStartTime(activeTabId, tabs[0].url);
             }
         });
