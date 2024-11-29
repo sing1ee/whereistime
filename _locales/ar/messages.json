@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "متتبع وقت التصفح",
+    "description": "اسم الإضافة"
+  },
+  "extDesc": {
+    "message": "تتبع الوقت المستغرق على مواقع الويب المختلفة",
+    "description": "وصف الإضافة"
+  },
+  "resetConfirm": {
+    "message": "هل أنت متأكد من رغبتك في إعادة تعيين جميع الإحصائيات؟ لا يمكن التراجع عن هذا الإجراء.",
+    "description": "رسالة تأكيد إعادة التعيين"
+  },
+  "saveAsPNG": {
+    "message": "حفظ كـ PNG",
+    "description": "نص زر الحفظ كـ PNG"
+  },
+  "saveAsJPEG": {
+    "message": "حفظ كـ JPEG",
+    "description": "نص زر الحفظ كـ JPEG"
+  },
+  "hours": {
+    "message": "س",
+    "description": "وحدة الساعات"
+  },
+  "minutes": {
+    "message": "د",
+    "description": "وحدة الدقائق"
+  },
+  "seconds": {
+    "message": "ث",
+    "description": "وحدة الثواني"
+  },
+  "chartTitle": {
+    "message": "توزيع وقت تصفح المواقع",
+    "description": "عنوان الرسم البياني"
+  },
+  "downloadFileName": {
+    "message": "احصائيات-التصفح",
+    "description": "اسم ملف التحميل"
+  },
+  "browsingStats": {
+    "message": "إحصائيات التصفح",
+    "description": "عنوان الإحصائيات"
+  },
+  "resetButton": {
+    "message": "إعادة تعيين الإحصائيات",
+    "description": "نص زر إعادة التعيين"
+  }
+}

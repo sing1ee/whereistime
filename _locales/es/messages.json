@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "Rastreador de Tiempo URL",
+    "description": "Nombre de la extensión"
+  },
+  "extDesc": {
+    "message": "Rastrea el tiempo dedicado a diferentes sitios web",
+    "description": "Descripción de la extensión"
+  },
+  "resetConfirm": {
+    "message": "¿Estás seguro de que deseas restablecer todas las estadísticas? Esta acción no se puede deshacer.",
+    "description": "Mensaje de confirmación de restablecimiento"
+  },
+  "saveAsPNG": {
+    "message": "Guardar como PNG",
+    "description": "Texto del botón Guardar como PNG"
+  },
+  "saveAsJPEG": {
+    "message": "Guardar como JPEG",
+    "description": "Texto del botón Guardar como JPEG"
+  },
+  "hours": {
+    "message": "h",
+    "description": "Unidad de horas"
+  },
+  "minutes": {
+    "message": "m",
+    "description": "Unidad de minutos"
+  },
+  "seconds": {
+    "message": "s",
+    "description": "Unidad de segundos"
+  },
+  "chartTitle": {
+    "message": "Distribución del Tiempo en Sitios Web",
+    "description": "Título del gráfico"
+  },
+  "downloadFileName": {
+    "message": "estadisticas-navegacion",
+    "description": "Nombre del archivo de descarga"
+  },
+  "browsingStats": {
+    "message": "Estadísticas de Navegación",
+    "description": "Título de estadísticas"
+  },
+  "resetButton": {
+    "message": "Restablecer Estadísticas",
+    "description": "Texto del botón de restablecimiento"
+  }
+}

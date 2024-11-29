@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "Suivi du Temps URL",
+    "description": "Nom de l'extension"
+  },
+  "extDesc": {
+    "message": "Suivez le temps passé sur différents sites web",
+    "description": "Description de l'extension"
+  },
+  "resetConfirm": {
+    "message": "Êtes-vous sûr de vouloir réinitialiser toutes les statistiques ? Cette action ne peut pas être annulée.",
+    "description": "Message de confirmation de réinitialisation"
+  },
+  "saveAsPNG": {
+    "message": "Enregistrer en PNG",
+    "description": "Texte du bouton Enregistrer en PNG"
+  },
+  "saveAsJPEG": {
+    "message": "Enregistrer en JPEG",
+    "description": "Texte du bouton Enregistrer en JPEG"
+  },
+  "hours": {
+    "message": "h",
+    "description": "Unité d'heures"
+  },
+  "minutes": {
+    "message": "m",
+    "description": "Unité de minutes"
+  },
+  "seconds": {
+    "message": "s",
+    "description": "Unité de secondes"
+  },
+  "chartTitle": {
+    "message": "Distribution du Temps par Site Web",
+    "description": "Titre du graphique"
+  },
+  "downloadFileName": {
+    "message": "statistiques-navigation",
+    "description": "Nom du fichier de téléchargement"
+  },
+  "browsingStats": {
+    "message": "Statistiques de Navigation",
+    "description": "Titre des statistiques"
+  },
+  "resetButton": {
+    "message": "Réinitialiser les Statistiques",
+    "description": "Texte du bouton de réinitialisation"
+  }
+}

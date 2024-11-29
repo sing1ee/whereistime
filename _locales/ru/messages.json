@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "URL Трекер Времени",
+    "description": "Название расширения"
+  },
+  "extDesc": {
+    "message": "Отслеживание времени, проведенного на различных веб-сайтах",
+    "description": "Описание расширения"
+  },
+  "resetConfirm": {
+    "message": "Вы уверены, что хотите сбросить всю статистику? Это действие нельзя отменить.",
+    "description": "Сообщение подтверждения сброса"
+  },
+  "saveAsPNG": {
+    "message": "Сохранить как PNG",
+    "description": "Текст кнопки Сохранить как PNG"
+  },
+  "saveAsJPEG": {
+    "message": "Сохранить как JPEG",
+    "description": "Текст кнопки Сохранить как JPEG"
+  },
+  "hours": {
+    "message": "ч",
+    "description": "Единица часов"
+  },
+  "minutes": {
+    "message": "м",
+    "description": "Единица минут"
+  },
+  "seconds": {
+    "message": "с",
+    "description": "Единица секунд"
+  },
+  "chartTitle": {
+    "message": "Распределение Времени по Сайтам",
+    "description": "Заголовок графика"
+  },
+  "downloadFileName": {
+    "message": "статистика-просмотров",
+    "description": "Имя файла для скачивания"
+  },
+  "browsingStats": {
+    "message": "Статистика Просмотров",
+    "description": "Заголовок статистики"
+  },
+  "resetButton": {
+    "message": "Сбросить Статистику",
+    "description": "Текст кнопки сброса"
+  }
+}
