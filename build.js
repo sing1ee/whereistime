@@ -25,6 +25,10 @@ const filesToCopy = [
     'index.html'
 ];
 
+// 创建 lib 目录用于第三方库
+const libDir = path.join(distDir, 'lib');
+fs.mkdirSync(libDir, { recursive: true });
+
 // 复制文件
 filesToCopy.forEach(file => {
     const sourcePath = path.join(__dirname, file);
@@ -36,13 +40,18 @@ filesToCopy.forEach(file => {
     }
 });
 
-// 复制 Chart.js
-const chartJsDir = path.join(distDir, 'node_modules', 'chart.js', 'dist');
-fs.mkdirSync(chartJsDir, { recursive: true });
+// 复制 Chart.js（使用 UMD 版本，这是最适合浏览器的版本）
 const chartJsSource = path.join(__dirname, 'node_modules', 'chart.js', 'dist', 'chart.umd.js');
-const chartJsTarget = path.join(chartJsDir, 'chart.umd.js');
-fs.copyFileSync(chartJsSource, chartJsTarget);
-console.log('已复制: Chart.js 库');
+const chartJsTarget = path.join(libDir, 'chart.min.js');
+
+// 读取 Chart.js 文件内容并进行简单的压缩
+let chartJsContent = fs.readFileSync(chartJsSource, 'utf8');
+// 移除注释和多余的空白字符
+chartJsContent = chartJsContent.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
+chartJsContent = chartJsContent.replace(/\s+/g, ' ');
+// 写入压缩后的文件
+fs.writeFileSync(chartJsTarget, chartJsContent);
+console.log('已复制并压缩: Chart.js');
 
 // 如果有public目录，复制整个目录
 const publicDir = path.join(__dirname, 'public');

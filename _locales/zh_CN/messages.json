@@ -1,0 +1,30 @@
+{
+  "extName": {
+    "message": "网页时间追踪器",
+    "description": "扩展名称"
+  },
+  "extDesc": {
+    "message": "追踪在不同网站上花费的时间",
+    "description": "扩展描述"
+  },
+  "resetConfirm": {
+    "message": "确定要重置所有统计数据吗？此操作不可撤销。",
+    "description": "重置确认消息"
+  },
+  "saveAsPNG": {
+    "message": "保存为PNG",
+    "description": "保存为PNG按钮文本"
+  },
+  "saveAsJPEG": {
+    "message": "保存为JPEG",
+    "description": "保存为JPEG按钮文本"
+  },
+  "resetStats": {
+    "message": "重置统计",
+    "description": "重置统计按钮文本"
+  },
+  "browsingStats": {
+    "message": "浏览时间统计",
+    "description": "统计标题"
+  }
+}

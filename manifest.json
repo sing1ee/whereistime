@@ -1,20 +1,22 @@
 {
   "manifest_version": 3,
-  "name": "URL Time Tracker",
-  "version": "1.0",
-  "description": "Track time spent on different websites",
+  "name": "__MSG_extName__",
+  "short_name": "TimeTracker",
+  "version": "1.0.0",
+  "description": "__MSG_extDesc__",
+  "default_locale": "en",
+  "author": "Your Name",
+  "minimum_chrome_version": "88",
   "permissions": [
-    "tabs",
     "storage",
     "activeTab",
-    "scripting",
     "webNavigation"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "*://*/*"
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+    "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "background": {
     "service_worker": "background.js"

@@ -1,0 +1,30 @@
+{
+  "extName": {
+    "message": "URL Time Tracker",
+    "description": "Extension name"
+  },
+  "extDesc": {
+    "message": "Track time spent on different websites",
+    "description": "Extension description"
+  },
+  "resetConfirm": {
+    "message": "Are you sure you want to reset all statistics? This action cannot be undone.",
+    "description": "Reset confirmation message"
+  },
+  "saveAsPNG": {
+    "message": "Save as PNG",
+    "description": "Save as PNG button text"
+  },
+  "saveAsJPEG": {
+    "message": "Save as JPEG",
+    "description": "Save as JPEG button text"
+  },
+  "resetStats": {
+    "message": "Reset Statistics",
+    "description": "Reset statistics button text"
+  },
+  "browsingStats": {
+    "message": "Browsing Time Statistics",
+    "description": "Statistics title"
+  }
+}
