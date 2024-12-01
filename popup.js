@@ -81,42 +81,64 @@ async function displayStats() {
     myChart.destroy();
   }
 
-  // 创建颜色数组
+  // 创建颜色数组 - 使用更柔和的现代配色
   const colors = [
-    '#FF6384', // 红色
-    '#36A2EB', // 蓝色
-    '#FFCE56', // 黄色
-    '#4BC0C0', // 青色
-    '#9966FF', // 紫色
-    '#FF9F40', // 橙色
-    '#7FD2FF', // 浅蓝
-    '#FFB6C1', // 浅粉
-    '#98FB98', // 浅绿
-    '#DDA0DD', // 浅紫
-    '#808080'  // 灰色（用于"其他"类别）
+    '#22c55e', // 绿色
+    '#3b82f6', // 蓝色
+    '#f59e0b', // 橙色
+    '#ec4899', // 粉色
+    '#8b5cf6', // 紫色
+    '#06b6d4', // 青色
+    '#64748b', // 蓝灰
+    '#ef4444', // 红色
+    '#14b8a6', // 青绿
+    '#f97316', // 深橙
+    '#94a3b8'  // 浅灰（用于"其他"类别）
   ];
   
   // 创建新的图表实例并保存到全局变量
   myChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'doughnut',
     data: {
       labels: labels,
       datasets: [{
         data: finalDurations,
-        backgroundColor: colors
+        backgroundColor: colors,
+        borderWidth: 0,
+        borderRadius: 4,
+        spacing: 2,
+        hoverOffset: 8
       }]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: true,
+      animation: {
+        duration: 500
+      },
+      layout: {
+        padding: {
+          top: 10,
+          bottom: 10
+        }
+      },
       plugins: {
         legend: {
           position: 'bottom',
           labels: {
-            // 限制标签文本长度
+            padding: 15,
+            usePointStyle: true,
+            pointStyle: 'circle',
+            boxWidth: 8,
+            boxHeight: 8,
+            font: {
+              size: 12,
+              family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+            },
             formatter: function(value, context) {
               let label = context.label || '';
-              if (label.length > 30) {
-                label = label.substring(0, 27) + '...';
+              if (label.length > 25) {
+                label = label.substring(0, 22) + '...';
               }
               return label;
             }
@@ -124,9 +146,27 @@ async function displayStats() {
         },
         title: {
           display: true,
-          text: chrome.i18n.getMessage("chartTitle")
+          text: chrome.i18n.getMessage("chartTitle"),
+          font: {
+            size: 16,
+            weight: '600',
+            family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+          },
+          padding: {
+            bottom: 20
+          }
         },
         tooltip: {
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          titleColor: '#1a1a1a',
+          bodyColor: '#4a5568',
+          bodyFont: {
+            size: 13
+          },
+          borderColor: '#e2e8f0',
+          borderWidth: 1,
+          padding: 12,
+          displayColors: true,
           callbacks: {
             label: function(context) {
               const domain = finalDomains[context.dataIndex];
