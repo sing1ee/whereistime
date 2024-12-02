@@ -11,9 +11,6 @@
     "storage",
     "tabs"
   ],
-  "optional_permissions": [
-    "webNavigation"
-  ],
   "host_permissions": [
     "https://*/*"
   ],
